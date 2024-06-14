@@ -1,0 +1,33 @@
+{
+    "input_config": {
+        "file_path": "input/articles.csv",
+        "format_type": "csv"
+    },
+    "output_config": {
+        "file_path": "product_type",
+        "repartition": 1,
+        "file_format": "csv",
+        "save_mode": "overwrite"
+    },
+    "transformations": {
+        "select_cols": [
+            "product_type_no",
+            "product_type_name"
+        ],
+        "cast_data_type": {
+            "product_type_no": "integer",
+            "product_type_name": "string"
+        },
+        "drop_duplicates": [
+            "product_type_no",
+            "product_type_name"
+        ],
+        "cast_to_dictionary": {
+            "new_column_name": "prod_type_dict",
+            "columns": [
+                "product_type_no",
+                "product_type_name"
+            ]
+        }
+    }
+}

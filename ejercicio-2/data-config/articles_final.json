@@ -1,0 +1,35 @@
+{
+    "datasets": 
+        [
+            {
+                "dataset_name":"product_type",
+                "input_config": {
+                    "file_path": "product_type",
+                    "format_type": "csv"
+                },
+                "transformations": {
+                    "cast_dictionary_to_col":{
+                        "dict_col_name": "prod_type_dict",
+                        "mapping":"MAP<STRING,STRING>",
+                        "col_names":["product_type_no","product_type_name"]
+                    }
+                }
+            },
+            {
+                "dataset_name":"articles",
+                "input_config": {
+                    "file_path": "input/articles.csv",
+                    "format_type": "csv"
+                }
+            }
+        ],
+
+    "query": "select a.* from articles a join product_type p on p.product_type_no=a.product_type_no",
+    
+    "output_config": {
+        "file_path": "articles_final_output",
+        "repartition": 1,
+        "file_format": "csv",
+        "save_mode": "overwrite"
+    }
+}
